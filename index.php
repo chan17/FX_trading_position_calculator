@@ -62,7 +62,7 @@
     <nav id="bs-navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a href="../getting-started/" onclick="_hmt.push(['_trackEvent', 'docv3-navbar', 'click', 'V3导航-起步'])">起步</a>
+          <a href="../getting-started/">aaa</a>
         </li>
 
       </ul>
@@ -70,50 +70,84 @@
     </nav>
   </div>
 </header>
+<article class="ui-user">
+	<div class="container">
+		<?php
+      	include("conn.php");
+      	include("check_login.php");
+      	$sql = $conn->query('SELECT * FROM user WHERE id = "' . $_SESSION['id'] . '"');
+		$result=$sql->fetch_array();
+        ?> 
+        <br/>
+        <br/>
+		<form class="form-inline" method="post" action="calculator.php?routing=setUserData">
+			<div class="form-group">
+		    <label for="">当前本金</label>
+		    $
+		    <input type="text" class="form-control" id="" placeholder="本金" name="deposit" value="<?php echo $result['deposit']; ?>">
+		  </div>
+(单位 美元)
+&nbsp;&nbsp;&nbsp;&nbsp;
+        
+
+			<div class="form-group">
+		    <label for="">总仓位</label>
+		    
+		    <input type="text" class="form-control" id="" placeholder="本金" name="position" value="<?php echo $result['position']; ?>">
+		  </div>
+(两位小数，不大于1)
+&nbsp;&nbsp;&nbsp;&nbsp;
+		  <button type="submit" class="btn btn-default">设置</button>
+		</form>
+		
+	</div>
+</article>
+
+        <br/>
+<br/>
 
 <article class="ui-content">
 	<div id="ui-input-data" class="container">
 		
-		<form class="form-horizontal">
+		<form class="form-horizontal" method="post" action="calculator.php?routing=adddata">
 		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">价格</label>
+		    <label for="" class="col-sm-2 control-label">价格</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="价格">
+		      <input type="text" name="price" class="form-control" id="" placeholder="价格">
 		    </div>
 		  </div>
 
 		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">仓位</label>
+		    <label for="" class="col-sm-2 control-label">仓位</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="仓位">
+		      <input type="text" name="position" class="form-control" id="" placeholder="仓位">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="" class="col-sm-2 control-label">手数</label>
+		    <div class="col-sm-10">
+		      <input type="text" name="round_lot" class="form-control" id="" placeholder="仓位">
 		    </div>
 		  </div>
 
 		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">本金</label>
+		    <label for="" class="col-sm-2 control-label">杠杆</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="本金">
+		      <input type="text" name="leverage" class="form-control" id="" placeholder="杠杆">
 		    </div>
 		  </div>
 
 		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">杠杆</label>
+		    <label for="" class="col-sm-2 control-label">占用保证金</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="杠杆">
+		      <input type="text" name="deposits_occupied" class="form-control" id="" placeholder="占用保证金">
 		    </div>
 		  </div>
 
 		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">占用保证金</label>
+		    <label for="" class="col-sm-2 control-label">盈利</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="占用保证金">
-		    </div>
-		  </div>
-
-		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">盈利</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="盈利">
+		      <input type="text" name="earnings" class="form-control" id="" placeholder="盈利">
 		    </div>
 		  </div>
 		  
@@ -155,6 +189,9 @@
 	</div>
 
 </article>
+<?php 
+	$conn->close();
 
+ ?>
 </body>
 </html>
