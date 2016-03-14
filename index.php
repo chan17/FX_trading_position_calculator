@@ -111,18 +111,18 @@
 		
 		<form class="form-horizontal" method="post" action="calculator.php?routing=adddata">
 		  <div class="form-group">
-		    <label for="" class="col-sm-2 control-label">价格</label>
+		    <label for="" class="col-sm-2 control-label">起始价格</label>
 		    <div class="col-sm-10">
 		      <input type="text" name="price" class="form-control" id="" placeholder="价格">
 		    </div>
 		  </div>
 
-		  <div class="form-group">
+		 <!--  <div class="form-group">
 		    <label for="" class="col-sm-2 control-label">仓位</label>
 		    <div class="col-sm-10">
 		      <input type="text" name="position" class="form-control" id="" placeholder="仓位">
 		    </div>
-		  </div>
+		  </div> -->
 		  <div class="form-group">
 		    <label for="" class="col-sm-2 control-label">手数</label>
 		    <div class="col-sm-10">
@@ -138,23 +138,24 @@
 		  </div>
 
 		  <div class="form-group">
-		    <label for="" class="col-sm-2 control-label">占用保证金</label>
+		    <label for="" class="col-sm-2 control-label">价格上涨单位</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="deposits_occupied" class="form-control" id="" placeholder="占用保证金">
+		      <input type="text" name="up_amount" class="form-control" id="" placeholder="占用保证金">
 		    </div>
 		  </div>
 
-		  <div class="form-group">
+<!-- 		  <div class="form-group">
 		    <label for="" class="col-sm-2 control-label">盈利</label>
 		    <div class="col-sm-10">
 		      <input type="text" name="earnings" class="form-control" id="" placeholder="盈利">
 		    </div>
-		  </div>
+		  </div> -->
 		  
 
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
 		      <button type="submit" class="btn btn-default">计算</button>
+		      <span>注意，第二单之后，只需要写价格</span>
 		    </div>
 		  </div>
 		</form>	
