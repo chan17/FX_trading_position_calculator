@@ -35,8 +35,7 @@
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
-  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
 <![endif]-->
 
 <!-- Favicons -->
@@ -140,7 +139,7 @@
 		  <div class="form-group">
 		    <label for="" class="col-sm-2 control-label">价格上涨单位</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="up_amount" class="form-control" id="" placeholder="占用保证金">
+		      <input type="text" name="up_amount" class="form-control" id="" placeholder="价格上涨单位">
 		    </div>
 		  </div>
 
@@ -163,31 +162,7 @@
 
 	<hr/>
 
-	<div id="ui-view-data" class="container">
-		<table class="table table-striped">
-	      <thead>
-	        <tr>
-	          <th>#</th>
-	          <th>价格</th>
-	          <th>仓位</th>
-	          <th>本金</th>
-	          <th>杠杆</th>
-	          <th>盈利</th>
-	        </tr>
-	      </thead>
-	      <tbody>
-	        <tr>
-	          <th >fffffffffff</th>
-	          <th >fffffffffff</th>
-	          <th >fffffffffff</th>
-	          <th >fffffffffff</th>
-	          <th >fffffffffff</th>
-	          <th >fffffffffff</th>
-
-	        </tr>
-	      </tbody>
-	    </table>
-	</div>
+	
 
 </article>
 <?php 

@@ -1,6 +1,7 @@
 <meta charset="utf8">
 <?php
-$conn = mysqli_connect("localhost","root","","fx_trading");
+// $conn = mysqli_connect("localhost","root","","fx_trading");
+$conn = mysqli_connect("localhost","root","root","fx_trading");
 if (!$conn) {
   exit("链接数据库失败！");
 }
