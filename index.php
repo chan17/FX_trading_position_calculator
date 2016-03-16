@@ -139,7 +139,7 @@
 		  <div class="form-group">
 		    <label for="" class="col-sm-2 control-label">价格上涨单位</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="up_amount" class="form-control" id="" placeholder="价格上涨单位">
+		      <input type="text" name="up_amount" value="0.01" class="form-control" id="" placeholder="价格上涨单位">
 		    </div>
 		  </div>
 

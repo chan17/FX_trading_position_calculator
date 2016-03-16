@@ -19,7 +19,9 @@
 		/*width: 80%;
 		max-width: 500px;*/
 	}
-
+	#ui-view-data .table>tbody>tr>td,#ui-view-data .table>tbody>tr>th,#ui-view-data .table>tfoot>tr>td,#ui-view-data .table>tfoot>tr>th,#ui-view-data .table>thead>tr>td,#ui-view-data .table>thead>tr>th {
+	    padding: 0.4em;
+	}
 </style>
 
 <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -38,12 +40,16 @@
 </script>
   </head>
 
-<body>
+<body >
 
 <article>
-
+		<a class="btn btn-primary" href="index.php" style="
+    font-size: 0.95em;
+">返回上一页</a>
 	<div id="ui-view-data" class="container">
-		<table class="table table-striped">
+		<table class="table table-striped" style="
+    font-size: 0.9em;
+">
 	      <thead>
 	        <tr>
 	          <th>#</th>
@@ -53,6 +59,7 @@
 	          <th>占用保证金</th>
 	          <th>手数量</th>
 	          <th>止损</th>
+	          <th>成本</th>
 	          <th>盈利</th>
 	        </tr>
 	      </thead>
@@ -71,16 +78,21 @@
 			}
 		
 			// var_dump($routing);
-			$currentPrice=0;
+			$currentPrice=0;//行情价格
+			$costPrice=0;//成本价格
+			$stopPrice=0;//止损价格
 			$currentRoundLot=$round_lot;
 			for ($i=0; $i < 20; $i++) { 
 				//可用总资金
 				$maxMoney=$rowGetUser['deposit']*$rowGetUser['position'];
 				//价格
 				$currentPrice=$startPrice+$up_amount*$i;
+				if ($i==0) {
+					$costPrice=$currentPrice;
+				}
 
 				//占用保证金
-				$sumMoney=$startPrice*$currentRoundLot*100;
+				$sumMoney=$costPrice*$currentRoundLot*100;
 				$deposits_occupied=$sumMoney/$leverage;//占用保证金
 		/*		var_dump($sumMoney);
 				var_dump($maxMoney);
@@ -101,22 +113,45 @@
 				if ($i==0) {
 					$earnings=0;
 				}else{
-					$earnings=($currentPrice-$startPrice)*$currentRoundLot*100;
+					$earnings=($currentPrice-$costPrice)*$currentRoundLot*100;
+// if ($i==2) {
+// 					var_dump($currentPrice);
+// 					var_dump($startPrice);
+// 					var_dump($currentRoundLot);
+
+// var_dump($earnings);
+// exit();
+// 	# code...
+// }
 					//如果盈利等于保证金，加仓相同与第一手的手数量
 					if ($earnings>=$deposits_occupied and $i!=0) {
+						$prevPrice=$costPrice;
+						$prevRoundlot=$currentRoundLot;
+						if ($stopPrice==0) {
+							$stopPrice=$costPrice;
+						}
+// var_dump($costPrice);
 						$currentRoundLot=$round_lot+$currentRoundLot;
+						$costPrice=($prevRoundlot*$prevPrice+$round_lot*$currentPrice)/$currentRoundLot;
+						// var_dump($currentRoundLot);
+// var_dump($currentPrice);
 					}
 				}
 				$testI=$i+1;
+				$position=$position*100;
+				$position=sprintf("%.2f", $position);
+				$earnings=sprintf("%.2f", $earnings);
+				$costPrice=sprintf("%.2f", $costPrice);
 				print "<tr>
-	          <th >第{$testI}手</th>
-	          <th >$currentPrice</th>
-	          <th >$position</th>
-	          <th >$leverage</th>
-	          <th >$deposits_occupied</th>
-	          <th >$currentRoundLot</th>
-	          <th >aaa</th>
-	          <th >$earnings</th>
+	          <th >{$testI}</th>
+	          <th >{$currentPrice}点</th>
+	          <th >$position%</th>
+	          <th >1:$leverage</th>
+	          <th >\${$deposits_occupied}</th>
+	          <th >{$currentRoundLot}手</th>
+	          <th >{$stopPrice}</th>
+	          <th >\${$costPrice}</th>
+	          <th >\${$earnings}</th>
 	        </tr>";
 			}/*end for*/
 
