@@ -129,6 +129,11 @@
 						$prevRoundlot=$currentRoundLot;
 						if ($stopPrice==0) {
 							$stopPrice=$costPrice;
+							$stopPriceDouble=$stopPrice*2;
+						}else{
+							if ($earnings>=$stopPriceDouble) {
+								$stopPrice=$costPrice;
+							}
 						}
 // var_dump($costPrice);
 						$currentRoundLot=$round_lot+$currentRoundLot;
